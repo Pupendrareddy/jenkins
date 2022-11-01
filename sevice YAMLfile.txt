@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:  
+  name: my-nodeport-wordpress
+  namespace: wordpress
+spec:
+  selector:    
+    app.kubernetes.io/component: wordpress-webserver
+  type: NodePort
+  ports:  
+  - name: http
+    port: 80
+    targetPort: 80
+    nodePort: 30036
+    protocol: TCP

@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/HARIsynechron123/MySQLTest.git']]])            
+
+          }
+        }
+        
+        stage('build') {
+            steps {
+                sh 'go mod tidy'
+                sh 'go test -v -run TestTerraformAwsRdsExample -timeout 30m'			
+		    }
+        
+        }
+    }
+}
