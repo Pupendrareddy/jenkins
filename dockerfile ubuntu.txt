@@ -1,0 +1,6 @@
+From ubuntu:latest
+COPY ./usr/share/ubuntu/html
+Run apt-get install -y && apt-get update
+EXPOSE 80
+CMD ["echo", "nginx web server image"]
+
